@@ -6,8 +6,8 @@ namespace seporla;
 
 class SepoLog{
 
-	final private $filePath;
-	final private $logArray;
+	private $filePath;
+	private $logArray;
 
 	// The constructor gets a file path as a String argument
 	function __construct($filePath){
@@ -28,7 +28,7 @@ class SepoLog{
 	private function createLogArray($filePath){
 
 		// functionality goes here
-		
+
 	}
 
 }

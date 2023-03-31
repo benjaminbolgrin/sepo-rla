@@ -1,10 +1,11 @@
 <?php
 
 // The SepoLogAnalyzer object operates on the SepoLog object
+namespace seporla;
 
 class SepoLogAnalyzer{
 
-	final private $sepoLog;
+	private $sepoLog;
 
 	function __construct(SepoLog $sepoLog){
 
