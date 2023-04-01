@@ -58,7 +58,7 @@ class SepoLog{
 					"spcf" => $this->getJsonData($jSonObject, "spcf"),
 					"httpssl" => $this->getJsonData($jSonObject, "httpssl")
 
-				)
+				);
 
 			}
 
