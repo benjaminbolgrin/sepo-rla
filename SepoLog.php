@@ -80,6 +80,15 @@ class SepoLog{
 
 	}
 
+	// This function returns a specific value from a JSON object
+	private function getJsonData($json, $key): String{
+
+		$jSon = json_decode($json);
+
+		return $jSon->$key;
+
+	}
+
 }
 
 ?>
