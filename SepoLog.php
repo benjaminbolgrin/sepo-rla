@@ -42,23 +42,30 @@ class SepoLog{
 		}
 
 		if($logFile){
-
+			$i = 1;
 			while (($line = fgets($logFile)) !== false){
-
+				echo $i;
 				$jSonObject = $this->getDecodedJson($this->getEncodedJson($line));
+				$i++;
 
-				$this->logArray[] = array(
+				// Ignore entries without serial string
+				if($this->getSerial($line) != ""){
 
-					"serial" => $this->getSerial($line),
-					"mac" => $this->getJsonData($jSonObject, "mac"),
-					"nic" => $this->getJsonData($jSonObject, "nic"),
-					"mem" => $this->getJsonData($jSonObject, "mem"),
-					"cpu" => $this->getJsonData($jSonObject, "cpu"),
-					"httpaveng" => $this->getJsonData($jSonObject, "httpaveng"),
-					"spcf" => $this->getJsonData($jSonObject, "spcf"),
-					"httpssl" => $this->getJsonData($jSonObject, "httpssl")
+					$this->logArray[] = array(
 
-				);
+						"serial" => $this->getSerial($line),
+						"mac" => $this->getJsonData($jSonObject, "mac"),
+						"nic" => $this->getJsonData($jSonObject, "nic"),
+						"mem" => $this->getJsonData($jSonObject, "mem"),
+						"cpu" => $this->getJsonData($jSonObject, "cpu"),
+						"httpaveng" => $this->getJsonData($jSonObject, "httpaveng"),
+						"spcf" => $this->getJsonData($jSonObject, "spcf")
+						
+					);
+
+				}
+
+				
 
 			}
 
@@ -69,8 +76,15 @@ class SepoLog{
 	// This function retrieves the serial number from a line of log
 	private function getSerial($logLine): String{
 
-		$serial = strtok(substr($logLine, strpos($logLine, "serial=") + 7), " ");
-	
+		// Not every line contains a "serial=" string
+		$serial = "";
+
+		if(strpos($logLine, "serial=")){
+
+			$serial = strtok(substr($logLine, strpos($logLine, "serial=") + 7), " ");
+
+		}
+
 		return $serial;
 
 	}
@@ -96,9 +110,17 @@ class SepoLog{
 	// This function returns a specific value from a JSON object
 	private function getJsonData($json, $key): String{
 
+		// Making sure to return an empty string instead of null, if the key wasn't found
+		$value = "";
 		$jSon = json_decode($json);
 
-		return $jSon->$key;
+		if(!is_null($jSon->$key)){
+
+			$value = $jSon->$key;
+
+		}
+
+		return $value;
 
 	}
 
