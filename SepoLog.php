@@ -49,13 +49,13 @@ class SepoLog{
 
 				$this->logArray[] = array(
 
-					"serial" => $this->getSerial($line)
-					"mac" => $this->getJsonData($jSonObject, "mac")
-					"nic" => $this->getJsonData($jSonObject, "nic")
-					"mem" => $this->getJsonData($jSonObject, "mem")
-					"cpu" => $this->getJsonData($jSonObject, "cpu")
-					"httpaveng" => $this->getJsonData($jSonObject, "httpaveng")
-					"spcf" => $this->getJsonData($jSonObject, "spcf")
+					"serial" => $this->getSerial($line),
+					"mac" => $this->getJsonData($jSonObject, "mac"),
+					"nic" => $this->getJsonData($jSonObject, "nic"),
+					"mem" => $this->getJsonData($jSonObject, "mem"),
+					"cpu" => $this->getJsonData($jSonObject, "cpu"),
+					"httpaveng" => $this->getJsonData($jSonObject, "httpaveng"),
+					"spcf" => $this->getJsonData($jSonObject, "spcf"),
 					"httpssl" => $this->getJsonData($jSonObject, "httpssl")
 
 				)
