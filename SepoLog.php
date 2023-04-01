@@ -53,6 +53,15 @@ class SepoLog{
 
 	}
 
+	// This function retrieves the serial number from a line of log
+	private function getSerial($logLine): String{
+
+		$serial = strtok(substr($logLine, strpos($logLine, "serial=") + 7), " ");
+	
+	return $serial;
+
+	}
+
 }
 
 ?>
