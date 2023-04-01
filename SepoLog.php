@@ -58,7 +58,7 @@ class SepoLog{
 
 		$serial = strtok(substr($logLine, strpos($logLine, "serial=") + 7), " ");
 	
-	return $serial;
+		return $serial;
 
 	}
 
@@ -67,7 +67,16 @@ class SepoLog{
 
 		$encodedJson = strtok(substr($logLine, strpos($logLine, "specs=") +6), " ");
 
-	return $encodedJson;
+		return $encodedJson;
+
+	}
+
+	// This function returns a decoded JSON string
+	private function getDecodedJson($encodedJson): String{
+
+		$decodedJson = gzdecode(base64_decode($encodedJson, true));
+
+		return $decodedJson;
 
 	}
 
