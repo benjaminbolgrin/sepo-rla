@@ -13,7 +13,7 @@ class SepoLog{
 	function __construct($filePath){
 
 		$this->filePath = $filePath;
-		createLogArray($this->filePath);
+		$this->createLogArray();
 
 	}
 
@@ -24,10 +24,32 @@ class SepoLog{
 
 	}
 
-	// This function reads the log file and creates the logArray
-	private function createLogArray($filePath){
+	// This function reads the log file and initializes the logArray
+	private function createLogArray(){
 
-		// functionality goes here
+		try{
+
+			$logFile = fopen($this->filePath, "r");
+
+		}
+
+		catch(Exception $e){
+
+			echo "\nFile couldn't be read. \n";
+
+			exit();
+
+		}
+
+		if($logFile){
+
+			while (($line = fgets($logFile)) !== false){
+
+				// functionality goes here
+
+			}
+
+		}
 
 	}
 
