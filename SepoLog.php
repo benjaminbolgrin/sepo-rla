@@ -62,6 +62,15 @@ class SepoLog{
 
 	}
 
+	// This function retrieves the encoded JSON string from a line of log
+	private function getEncodedJson($logLine): String{
+
+		$encodedJson = strtok(substr($logLine, strpos($logLine, "specs=") +6), " ");
+
+	return $encodedJson;
+
+	}
+
 }
 
 ?>
