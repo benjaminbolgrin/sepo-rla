@@ -13,6 +13,14 @@ class SepoLogAnalyzer{
 
 	}
 
+	// This function returns an array with a list of serials, that requested the server the most,
+	// limited by the int limit
+	private function getMostRequestsBySerial($limit): Array{
+
+		// functionality goes here
+
+	}
+
 }
 
 ?>
