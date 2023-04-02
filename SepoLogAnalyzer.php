@@ -21,6 +21,14 @@ class SepoLogAnalyzer{
 
 	}
 
+	// This function returns an array with a top list of serials,
+	// that are installed on multiple devices
+	private function getMostUsedSerials($limit): Array{
+
+		// functionality goes here
+
+	}
+
 }
 
 ?>
