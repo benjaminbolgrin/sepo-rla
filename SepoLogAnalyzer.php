@@ -29,6 +29,14 @@ class SepoLogAnalyzer{
 
 	}
 
+	// This function returns an array with a "cpu, mem" key and the number of devices in use
+	// with that combination
+	private function getDevicesByHardware(): Array{
+
+		//functionality goes here
+		
+	}
+
 }
 
 ?>
