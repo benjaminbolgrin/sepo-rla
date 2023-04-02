@@ -60,7 +60,45 @@ class SepoLogAnalyzer{
 	// that are installed on multiple devices
 	public function getMostUsedSerials($limit): Array{
 
-		// functionality goes here
+		echo "\nCounting devices...\n";
+
+		$serialDeviceArray = [];
+
+		for($i = 0; $i < count($this->sepoLog); $i++){
+
+			$serial = $this->sepoLog[$i]["serial"];
+			$mac = $this->sepoLog[$i]["mac"];
+
+			if(array_key_exists($serial, $serialDeviceArray)){
+
+				if(!in_array($mac, $serialDeviceArray[$serial])){
+					$serialDeviceArray[$serial][] = $mac;
+				}
+
+			}
+
+			else{
+			
+				$serialDeviceArray[$serial] = array();
+				$serialDeviceArray[$serial][] = $mac;
+
+			}
+
+		}
+
+		arsort($serialDeviceArray);
+
+		$i = 0;
+		$top = array();
+
+		foreach($serialDeviceArray as $key => $value){
+
+			$top[$key] = $value;
+			if(++$i == $limit) break;
+
+		}
+
+		return $top;
 
 	}
 
