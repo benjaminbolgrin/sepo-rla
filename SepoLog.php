@@ -46,7 +46,7 @@ class SepoLog{
 			echo "\nCreating Array from log file...\n";
 			
 			while (($line = fgets($logFile)) !== false){
-				echo $i;
+				
 				$jSonObject = $this->getDecodedJson($this->getEncodedJson($line));
 				
 
