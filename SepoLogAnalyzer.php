@@ -106,7 +106,49 @@ class SepoLogAnalyzer{
 	// with that combination
 	public function getDevicesByHardware(): Array{
 
-		//functionality goes here
+
+		echo "\nGathering device information...\n";
+		$macArray = array();
+		$hardwareArray = array();
+
+		for($i=0; $i < count($this->sepoLog); $i++){
+
+			$mac = $this->sepoLog[$i]['mac'];
+			//echo $mac;
+			//echo "\n";
+			//echo $i;
+
+			$cpu = $this->sepoLog[$i]['cpu'];
+			$mem = $this->sepoLog[$i]['mem'];
+			$nic = $this->sepoLog[$i]['nic'];
+
+			$hardware = $cpu;
+			//$hardware = $nic;
+			
+			if(!in_array($mac, $macArray)){
+
+				if(array_key_exists($hardware, $hardwareArray)){
+
+					$hardwareArray[$hardware] += 1;
+
+				}
+				else{
+
+					$hardwareArray[$hardware] = 1;
+
+				}
+
+				$macArray[] = $mac;
+
+			}
+			
+		}
+
+		asort($hardwareArray);
+
+		echo "\nThere is a total of ".count($macArray)." devices in use.\n";
+		
+		return $hardwareArray;
 
 	}
 
