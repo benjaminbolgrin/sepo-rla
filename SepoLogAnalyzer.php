@@ -114,10 +114,6 @@ class SepoLogAnalyzer{
 		for($i=0; $i < count($this->sepoLog); $i++){
 
 			$mac = $this->sepoLog[$i]['mac'];
-			//echo $mac;
-			//echo "\n";
-			//echo $i;
-
 			$cpu = $this->sepoLog[$i]['cpu'];
 			$mem = $this->sepoLog[$i]['mem'];
 			$nic = $this->sepoLog[$i]['nic'];
