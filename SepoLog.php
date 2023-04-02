@@ -42,11 +42,13 @@ class SepoLog{
 		}
 
 		if($logFile){
-			$i = 1;
+
+			echo "\nCreating Array from log file...\n";
+			
 			while (($line = fgets($logFile)) !== false){
 				echo $i;
 				$jSonObject = $this->getDecodedJson($this->getEncodedJson($line));
-				$i++;
+				
 
 				// Ignore entries without serial string
 				if($this->getSerial($line) != ""){
@@ -68,6 +70,8 @@ class SepoLog{
 				
 
 			}
+
+			echo "\nArray created!\n";
 
 		}
 
