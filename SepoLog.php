@@ -46,12 +46,11 @@ class SepoLog{
 			echo "\nCreating Array from log file...\n";
 			
 			while (($line = fgets($logFile)) !== false){
-				
-				$jSonObject = $this->getDecodedJson($this->getEncodedJson($line));
-				
 
-				// Ignore entries without serial string
-				if($this->getSerial($line) != ""){
+				if($this->getSerial($line) !== "" && $this->getDecodedJson($this->getEncodedJson($line)) !== ""){
+				
+					$jSonObject = $this->getDecodedJson($this->getEncodedJson($line));
+
 
 					$this->logArray[] = array(
 
@@ -105,7 +104,14 @@ class SepoLog{
 	// This function returns a decoded JSON string
 	private function getDecodedJson($encodedJson): String{
 
-		$decodedJson = gzdecode(base64_decode($encodedJson, true));
+		// Some specs are encoded in an unknown format
+		// returning an empty string if that's the case
+		$decodedJson = "";
+		$tmpDecodedJson = @gzdecode(base64_decode($encodedJson, true));
+
+		if($tmpDecodedJson){
+			$decodedJson = $tmpDecodedJson;
+		}
 
 		return $decodedJson;
 
@@ -118,12 +124,16 @@ class SepoLog{
 		$value = "";
 		$jSon = json_decode($json);
 
-		if(!is_null($jSon->$key)){
+		if(is_null($jSon) === false){
 
-			$value = $jSon->$key;
+			if(isset($jSon->$key)){
+
+				$value = $jSon->$key;
+
+			}
 
 		}
-
+		
 		return $value;
 
 	}
